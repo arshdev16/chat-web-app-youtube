@@ -1,0 +1,26 @@
+.ProfilePic {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+}
+.ParentContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.Chats {
+  display: flex;
+  margin-top: 20px;
+  border-top: 2px solid grey;
+  border-bottom: 2px solid grey;
+  align-items: center;
+  padding: 5px;
+}
+.NameLink {
+  color: black;
+  text-decoration: none;
+}
+.ChatHeading {
+  align-self: center;
+  margin: 10px;
+}
