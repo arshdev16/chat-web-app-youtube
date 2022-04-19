@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Enter from "./components/enter/Enter";
 import Contacts from "./components/Contacts/Contacts";
 import Chats from "./components/Chats/Chats";
+import Profile from "./components/Profile/Profile";
 
 
 function App() {
@@ -17,8 +18,9 @@ function App() {
         <Navbar />
         {user ? <>
           <Routes>
-            <Route path="/" element={<Chats/>} />
+            <Route path="/" element={<Chats />} />
             <Route path="/add" element={<Contacts />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </> : <Enter />}
       </Router>
