@@ -16,8 +16,8 @@ const Profile = () => {
             <h2 style={{ margin: 0, fontWeight: "bold" }}>Profile</h2>
             <img src={auth.currentUser.photoURL} alt="ProfilePic" className="ProfilePic" />
             <h3 className='Name'>{auth.currentUser.displayName}</h3>
-            <button className='BlueBtn' onClick={copyCode} >Copy Code <IoIosCopy size={30}/></button>
-            <button className='BlueBtn' onClick={()=> {auth.signOut()}}>Log Out <BiLogOut size={30}/> </button>
+            <button className="BlueBtn" onClick={copyCode}>Copy Code <IoIosCopy size={30}/></button>
+            <button className='BlueBtn' onClick={()=> auth.signOut()}>SignOut <BiLogOut size={30}/></button>
         </div>
     )
 }

@@ -1,0 +1,92 @@
+.ChatScreenContainer{
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  margin-bottom: 100px;
+}
+.MessagesContainer{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin: 20px;
+}
+.MessageSent{
+  color: white;
+  width: max-content;
+  align-self: flex-end;
+  background-color: #207dff;
+  border-radius: 20px;
+  padding: 10px;
+  margin: 0.5% 0;
+}
+.MessageReceived{
+  color: white;
+  width: max-content;
+  align-self: flex-start;
+  background-color: #161616;
+  border-radius: 20px;
+  padding: 10px;
+  margin: 0.5% 0;
+}
+.InputContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  z-index: 1;
+}
+.MessageInput{
+  width: 80%;
+  border-radius: 20px;
+  border: none;
+  padding: 10px;
+  background-color: #dcdcdc;
+  color: rgb(0,0,0);
+  outline: none;
+}
+.SendButton{
+  width: 30%;
+  border-radius: 20px;
+  border: none;
+  padding: 10px;
+  background-color: #207dff;
+  color: white;
+  outline: none;
+  margin: 1% 4% 0 2%;
+}
+
+/* media query for PC */
+
+@media only screen and (min-width: 600px){
+  .MessageInput{
+    width: 95%;
+  }
+  .SendButton{
+    width: 5%;
+    margin: 0 1%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

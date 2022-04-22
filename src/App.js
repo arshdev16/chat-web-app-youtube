@@ -8,6 +8,7 @@ import Enter from "./components/enter/Enter";
 import Contacts from "./components/Contacts/Contacts";
 import Chats from "./components/Chats/Chats";
 import Profile from "./components/Profile/Profile";
+import ChatScreen from "./components/ChatScreen/ChatScreen";
 
 
 function App() {
@@ -21,11 +22,11 @@ function App() {
             <Route path="/" element={<Chats />} />
             <Route path="/add" element={<Contacts />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/:id" element={<ChatScreen />} />
           </Routes>
         </> : <Enter />}
       </Router>
     </div>
   );
 }
-
 export default App;

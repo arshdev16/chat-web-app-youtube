@@ -27,7 +27,7 @@ const Chats = () => {
         <h1 className="ChatHeading">Chats</h1>
         {chats.length === 0 ? <h2>You have no friends, LOL</h2> : chats.map((chat) => (
             <div key={chat.uid} className="Chats">
-                <img alt="Profile" src={chat.photoURL} className="ProfilePic" />
+                <img alt="Profile" src={chat.photoURL} className="ChatsProfilePic" />
                 <Link className="NameLink" to={{ pathname: `/${chat.uid}` }}><h2>{chat.name}</h2></Link>
             </div>
         ))}
