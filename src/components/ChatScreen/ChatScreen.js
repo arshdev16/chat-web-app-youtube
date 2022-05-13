@@ -4,33 +4,6 @@ import "./ChatScreen.css";
 import { useLocation } from 'react-router-dom';
 import { IoIosSend } from 'react-icons/io'
 
-const dummyData = [
-    {
-        id: 1,
-        message: "Hello",
-        received: false,
-        createdAt: new Date(2006, 11, 17, 3, 24, 0)
-    },
-    {
-        id: 2,
-        message: "Hi",
-        received: true,
-        createdAt: new Date(2006, 11, 17, 3, 25, 0)
-    },
-    {
-        id: 3,
-        message: "How are you?",
-        received: false,
-        createdAt: new Date(2006, 11, 17, 3, 26, 0)
-    },
-    {
-        id: 4,
-        message: "I'm fine",
-        received: true,
-        createdAt: new Date(2006, 11, 17, 3, 27, 0)
-    },
-]
-
 const ChatScreen = () => {
     const location = useLocation();
     const userId = location.pathname.split('/')[1];
@@ -66,7 +39,7 @@ const ChatScreen = () => {
     return (
         <div className="ChatScreenContainer">
             <div ref={messageRef} className="MessagesContainer">
-                {dummyData.map(message => (
+                {messages.map(message => (
                     <MessageItem messageItem={message} key={message.id} />
                 ))}
                 <MessageInput/>
@@ -77,13 +50,13 @@ const ChatScreen = () => {
 
 const MessageItem = ({ messageItem }) => {
     const { id, message, received, createdAt } = messageItem;
-    // const time =
-    //     typeof createdAt === "number" ? new Date(createdAt) : createdAt.toDate();
+    const time =
+        typeof createdAt === "number" ? new Date(createdAt) : createdAt.toDate();
 
     return (
         <div key={id} className={received === false ? "MessageSent" : "MessageReceived"}>
             <div className="Message">{message}</div>
-            <div className='MessageTime'>{createdAt.toLocaleTimeString()}</div>
+            <div className='MessageTime'>{time.toLocaleTimeString()}</div>
         </div>
     )
 }
@@ -91,11 +64,36 @@ const MessageItem = ({ messageItem }) => {
 const MessageInput = () => {
 
     const [message, setMessage] = useState('');
+    const location = useLocation()
+    const userId = location.pathname.split('/')[1];
+
+    const sendMessage = async (e) => {
+        e.preventDefault();
+        try{
+            const senderRef = firestore.collection("users").doc(auth.currentUser.uid).collection("chats").doc(userId).collection("messages");
+            const receiverRef = firestore.collection("users").doc(userId).collection("chats").doc(auth.currentUser.uid).collection("messages");
+            await senderRef({
+                message: message, 
+                received: false,
+                createdAt: ServerTimestamp()
+            })
+
+            await receiverRef({
+                message: message,
+                received: true,
+                createdAt: ServerTimestamp()
+            })
+            setMessage('');
+
+        }catch(e){
+            console.error(e.message)
+        }
+    }
 
     return (
         <div className='InputContainer'>
             <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Type your message..." className='MessageInput' />
-            <button disabled={message.length < 1} className="SendButton">
+            <button onClick={sendMessage} disabled={message.length < 1} className="SendButton">
                 <IoIosSend size={30} />
             </button>
         </div>
