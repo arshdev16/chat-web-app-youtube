@@ -72,13 +72,13 @@ const MessageInput = () => {
         try{
             const senderRef = firestore.collection("users").doc(auth.currentUser.uid).collection("chats").doc(userId).collection("messages");
             const receiverRef = firestore.collection("users").doc(userId).collection("chats").doc(auth.currentUser.uid).collection("messages");
-            await senderRef({
+            await senderRef.add({
                 message: message, 
                 received: false,
                 createdAt: ServerTimestamp()
             })
 
-            await receiverRef({
+            await receiverRef.add({
                 message: message,
                 received: true,
                 createdAt: ServerTimestamp()
